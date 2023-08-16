@@ -1,5 +1,6 @@
 package com.example.PokemonReview.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,7 @@ public class Review {
     private String content;
     private int stars;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pokemon_id")
     private Pokemon pokemon;
