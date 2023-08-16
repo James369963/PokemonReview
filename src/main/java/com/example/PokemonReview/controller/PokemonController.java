@@ -45,4 +45,26 @@ public class PokemonController {
                 .build();
         return new ResponseEntity<>(apiResponse,HttpStatus.OK);
     }
+
+    /*update pokemon by id*/
+    @PutMapping("/update/{id}")
+    public ResponseEntity<APIResponse> updatePokemonById(@RequestBody Pokemon pokemon, @PathVariable int id){
+        pokemonService.updatePokemon(pokemon,id);
+        APIResponse apiResponse = APIResponse.builder()
+                .statusCode(HttpStatus.OK.value())
+                .message("Pokemon " + id + " update success!!!")
+                .build();
+        return new ResponseEntity<>(apiResponse,HttpStatus.OK);
+    }
+
+    /*delete pokemon by id*/
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<APIResponse> deletePokemonById(@PathVariable int id){
+        pokemonService.deletePokemonId(id);
+        APIResponse apiResponse = APIResponse.builder()
+                .statusCode(HttpStatus.OK.value())
+                .message("Pokemon " + id + " delete success!!!")
+                .build();
+        return new ResponseEntity<>(apiResponse,HttpStatus.OK);
+    }
 }

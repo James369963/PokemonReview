@@ -8,6 +8,6 @@ public interface PokemonService {
     void createPokemon(Pokemon pokemon);
     List<Pokemon> getAllPokemon();
     Pokemon getPokemonById(int id);
-    Pokemon updatePokemon(Pokemon pokemonDto, int id);
+    void updatePokemon(Pokemon pokemon, int id);
     void deletePokemonId(int id);
 }

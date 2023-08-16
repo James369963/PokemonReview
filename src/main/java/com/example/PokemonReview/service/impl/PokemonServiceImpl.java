@@ -32,12 +32,18 @@ public class PokemonServiceImpl implements PokemonService {
     }
 
     @Override
-    public Pokemon updatePokemon(Pokemon pokemonDto, int id) {
-        return null;
+    public void updatePokemon(Pokemon pokemon, int id) {
+        Pokemon existPokemon = pokemonRepository.findById(id).orElseThrow(
+                ()-> new PokemonNotFoundException("don't have that pokemon"));
+        existPokemon.setName(pokemon.getName());
+        existPokemon.setType(pokemon.getType());
+        pokemonRepository.save(existPokemon);
     }
 
     @Override
     public void deletePokemonId(int id) {
-
+        Pokemon deletePokemon= pokemonRepository.findById(id).orElseThrow(
+                ()-> new PokemonNotFoundException("don't have that pokemon"));
+        pokemonRepository.delete(deletePokemon);
     }
 }
